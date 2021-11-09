@@ -26,6 +26,6 @@ test {
 }
 
 flyway {
-	configFiles = ['src/main/resources/application.properties']
+		configFiles = ['src/main/resources/application.properties']
 }
 
