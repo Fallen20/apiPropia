@@ -1,7 +1,6 @@
 package com.example.apiPropia.repository;
 
 import com.example.apiPropia.domain.model.FileTable;
-import com.example.apiPropia.domain.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -12,7 +11,7 @@ public interface FileRepository extends JpaRepository<FileTable, UUID> {//quien 
     //la tabla y el tipo de dato de la clave primaria
     //con interface genera la clase por cada consulta
 
-    @Query("select fileid from File")
+    @Query("select fileid from FileTable")
     List<String> getFileIds();
 
 }

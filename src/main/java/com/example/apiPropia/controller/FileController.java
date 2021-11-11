@@ -2,6 +2,8 @@ package com.example.apiPropia.controller;
 
 import com.example.apiPropia.domain.model.FileTable;
 import com.example.apiPropia.repository.FileRepository;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,12 +21,21 @@ public class FileController {
     }
 
     @GetMapping("/{id}")//si es get a /files/NUMERO, NUMERO se llama ID
-    public byte[] getId(@PathVariable UUID id){
-        FileTable file=fileRepository.getById(id);//sacas el file con esa ID pedida en la base de datos
-        return file.data;//le devuelves la imagen
+    public ResponseEntity<byte[]> getFile(@PathVariable UUID id){
+        FileTable file = fileRepository.findById(id).orElse(null);
+
+        if (file == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.valueOf(file.contenttype))
+                .contentLength(file.data.length)
+                .body(file.data);
     }
 
+
+
     @PostMapping//subir
+    //si no pones nada es como si pusieses @PostMapping("/"). Si hay dos iguales peta
     //post es el tipo de envio: POST o GET
     public String upload(@RequestParam("file") MultipartFile uploadedFile) {
         //multipart es cuando envias muchas cosas
@@ -42,10 +53,15 @@ public class FileController {
         }
     }
 
+
+/*//esto no hace falta porque lo guarda el de arriba
     @PostMapping("/")//si es post, le ponemos la direccion y seguido /, te lleva aqui
-    public FileTable createMFile(@RequestBody FileTable file){//requestBody es que quieres que te envie toda la info
+    public FileTable createFile(@RequestBody FileTable file){//requestBody es que quieres que te envie toda la info
      return fileRepository.save(file);//guarda la cosa que recibe
     }
+*/
+
+
 
     @GetMapping
     public String hack() {
