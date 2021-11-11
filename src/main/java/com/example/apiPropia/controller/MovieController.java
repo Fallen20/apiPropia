@@ -5,6 +5,7 @@ import com.example.apiPropia.repository.MovieRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+//se conecta a la base de datos/web
 
 @RestController
 @RequestMapping("/movies")
