@@ -1,5 +1,6 @@
 package com.example.apiPropia.controller;
 
+import com.example.apiPropia.domain.dto.ResponseMovies;
 import com.example.apiPropia.domain.model.Movie;
 import com.example.apiPropia.repository.MovieRepository;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,9 @@ public class MovieController {
     }
 
     @GetMapping("/")
-    public List<Movie> metodoPedido(){return movieRepository.findAll();}
+    public ResponseMovies metodoPedido(){
+        return new ResponseMovies(movieRepository.findAll());
+    }
     //aqui tenemos que pedir los datos de la consulta
 
     @PostMapping("/")
