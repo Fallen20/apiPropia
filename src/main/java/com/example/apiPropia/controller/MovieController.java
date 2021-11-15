@@ -18,8 +18,11 @@ public class MovieController {
     }
 
     @GetMapping("/")
-    public ResponseMovies metodoPedido(){
-        return new ResponseMovies(movieRepository.findAll());
+    public ResponseMovies metodoPedido(){//devuelve la lista pero en JSON
+        return new ResponseMovies(movieRepository.findAll());//mete los objetos en la lista
+        //y lo devuelve en json. Sino te devuelve [{onjeto}]>MAL
+        //{result:[{objeto}]}
+
     }
     //aqui tenemos que pedir los datos de la consulta
 

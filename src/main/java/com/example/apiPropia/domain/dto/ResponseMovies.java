@@ -5,8 +5,10 @@ import com.example.apiPropia.domain.model.Movie;
 import java.util.List;
 
 public class ResponseMovies {
-    List<Movie> result;
-
+    public List<Movie> result;//esto es una lista de los objetos
+    //result es el nombre este
+//{
+//    "result": [{
     public ResponseMovies(List<Movie> result) {
         this.result = result;
     }
